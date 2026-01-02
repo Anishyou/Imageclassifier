@@ -60,10 +60,10 @@ transform = transforms.Compose([
 ])
 
 train_dataset = torchvision.datasets.CIFAR10(
-    root='./data', train=True, download=True, transform=transform
+    root='../data', train=True, download=True, transform=transform
 )
 test_dataset = torchvision.datasets.CIFAR10(
-    root='./data', train=False, download=True, transform=transform
+    root='../data', train=False, download=True, transform=transform
 )
 
 train_loader = torch.utils.data.DataLoader(
@@ -268,8 +268,8 @@ for epoch in range(NUM_EPOCHS):
             'model_state_dict': model.state_dict(),
             'optimizer_state_dict': optimizer.state_dict(),
             'best_acc': best_acc,
-        }, 'best_model.pth')
-        print(f"   💾 New best model saved! (Accuracy: {best_acc:.2f}%)")
+        }, '../models/best_model.pth')
+        print(f"   💾 New best model saved to models/ (Accuracy: {best_acc:.2f}%)")
     
     print()
 
@@ -299,7 +299,7 @@ ax2.legend()
 ax2.grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig('training_curves.png', dpi=150)
+plt.savefig('../outputs/training_curves.png', dpi=150)
 plt.show()
 
 print("\n" + "="*60)
@@ -308,8 +308,8 @@ print("="*60)
 print(f"""
 RESULTS:
 - Best Test Accuracy: {best_acc:.2f}%
-- Model saved to: 'best_model.pth'
-- Training curves saved to: 'training_curves.png'
+- Model saved to: 'models/best_model.pth'
+- Training curves saved to: 'outputs/training_curves.png'
 
 KEY TAKEAWAYS:
 1. Training loop: forward → loss → backward → update

@@ -75,10 +75,10 @@ test_transform = transforms.Compose([
 ])
 
 train_dataset = torchvision.datasets.CIFAR10(
-    root='./data', train=True, download=True, transform=transform
+    root='../data', train=True, download=True, transform=transform
 )
 test_dataset = torchvision.datasets.CIFAR10(
-    root='./data', train=False, download=True, transform=test_transform
+    root='../data', train=False, download=True, transform=test_transform
 )
 
 BATCH_SIZE = 64
@@ -170,9 +170,9 @@ def visualize_schedulers():
     ax.grid(True, alpha=0.3)
     
     plt.tight_layout()
-    plt.savefig('lr_schedulers.png', dpi=150)
+    plt.savefig('../outputs/lr_schedulers.png', dpi=150)
     plt.show()
-    print("✓ Scheduler comparison saved to 'lr_schedulers.png'")
+    print("✓ Scheduler comparison saved to 'outputs/lr_schedulers.png'")
 
 visualize_schedulers()
 
@@ -384,10 +384,10 @@ axes[2].set_yscale('log')
 axes[2].grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig('training_with_scheduler.png', dpi=150)
+plt.savefig('../outputs/training_with_scheduler.png', dpi=150)
 plt.show()
 
-print(f"\n✓ Results saved to 'training_with_scheduler.png'")
+print(f"\n✓ Results saved to 'outputs/training_with_scheduler.png'")
 print(f"✓ Best accuracy achieved: {best_acc:.2f}%")
 
 # =============================================================================

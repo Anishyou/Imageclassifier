@@ -107,10 +107,10 @@ test_transform = transforms.Compose([
 
 # Load datasets
 train_dataset = torchvision.datasets.CIFAR10(
-    root='./data', train=True, download=True, transform=train_transform
+    root='../data', train=True, download=True, transform=train_transform
 )
 test_dataset = torchvision.datasets.CIFAR10(
-    root='./data', train=False, download=True, transform=test_transform
+    root='../data', train=False, download=True, transform=test_transform
 )
 
 # Use smaller batch size (224x224 images use more memory!)
@@ -298,7 +298,7 @@ def train_model(model, train_loader, test_loader, criterion, optimizer,
         
         if test_acc > best_acc:
             best_acc = test_acc
-            torch.save(model.state_dict(), f'{model_name}_best.pth')
+            torch.save(model.state_dict(), f'../models/{model_name}_best.pth')
     
     return train_losses, test_accs, best_acc
 

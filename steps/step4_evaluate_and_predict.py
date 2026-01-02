@@ -47,7 +47,7 @@ model = model.to(device)
 
 # Load the saved checkpoint
 try:
-    checkpoint = torch.load('best_model.pth', map_location=device)
+    checkpoint = torch.load('../models/best_model.pth', map_location=device)
     model.load_state_dict(checkpoint['model_state_dict'])
     print(f"✓ Model loaded from epoch {checkpoint['epoch']+1}")
     print(f"✓ Best accuracy was: {checkpoint['best_acc']:.2f}%")
@@ -67,7 +67,7 @@ transform = transforms.Compose([
 ])
 
 test_dataset = torchvision.datasets.CIFAR10(
-    root='./data', train=False, download=True, transform=transform
+    root='../data', train=False, download=True, transform=transform
 )
 test_loader = torch.utils.data.DataLoader(
     test_dataset, batch_size=BATCH_SIZE, shuffle=False, num_workers=0
@@ -166,9 +166,9 @@ def predict_and_show(model, test_loader, device, num_images=16):
             ax.axis('off')
     
     plt.tight_layout()
-    plt.savefig('predictions.png', dpi=150)
+    plt.savefig('../outputs/predictions.png', dpi=150)
     plt.show()
-    print("\n✓ Predictions saved to 'predictions.png'")
+    print("\n✓ Predictions saved to 'outputs/predictions.png'")
 
 print("\n" + "="*60)
 print("🔍 SAMPLE PREDICTIONS")
@@ -213,9 +213,9 @@ def plot_confusion_matrix(all_labels, all_predictions, classes):
     
     plt.colorbar(im)
     plt.tight_layout()
-    plt.savefig('confusion_matrix.png', dpi=150)
+    plt.savefig('../outputs/confusion_matrix.png', dpi=150)
     plt.show()
-    print("\n✓ Confusion matrix saved to 'confusion_matrix.png'")
+    print("\n✓ Confusion matrix saved to 'outputs/confusion_matrix.png'")
 
 print("\n" + "="*60)
 print("📊 CONFUSION MATRIX")

@@ -25,10 +25,7 @@ data/
 *.tar.gz
 
 # Model files (optional - uncomment if you DON'T want to share trained models)
-# *.pth
-
-# Generated images (optional - keep if you want to show results)
-# *.png
+# models/*.pth
 
 # Jupyter
 .ipynb_checkpoints/
@@ -40,4 +37,3 @@ Thumbs.db
 
 # Logs
 *.log
-

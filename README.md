@@ -6,7 +6,7 @@
 
 A comprehensive, step-by-step deep learning project for image classification using PyTorch. Learn to build, train, and deploy CNN models from scratch, and apply transfer learning for state-of-the-art results.
 
-![Sample Predictions](sample_images.png)
+![Sample Predictions](outputs/sample_images.png)
 
 ---
 
@@ -25,14 +25,14 @@ A comprehensive, step-by-step deep learning project for image classification usi
 
 | Step | File | What You'll Learn | Difficulty |
 |:----:|------|-------------------|:----------:|
-| 1 | `step1_data_loading.py` | Datasets, transforms, DataLoaders | ⭐ |
-| 2 | `step2_build_model.py` | CNN architecture (Conv, Pool, FC layers) | ⭐⭐ |
-| 3 | `step3_train_model.py` | Training loop, loss functions, optimizers | ⭐⭐ |
-| 4 | `step4_evaluate_and_predict.py` | Evaluation, predictions, confusion matrix | ⭐⭐ |
-| 5 | `step5_data_augmentation.py` | Image augmentation techniques | ⭐⭐ |
-| 6 | `step6_transfer_learning.py` | Pre-trained models, fine-tuning | ⭐⭐⭐ |
-| 7 | `step7_learning_rate_scheduler.py` | Learning rate scheduling strategies | ⭐⭐⭐ |
-| 8 | `step8_your_own_images.py` | Classify your own images! | ⭐ |
+| 1 | `steps/step1_data_loading.py` | Datasets, transforms, DataLoaders | ⭐ |
+| 2 | `steps/step2_build_model.py` | CNN architecture (Conv, Pool, FC layers) | ⭐⭐ |
+| 3 | `steps/step3_train_model.py` | Training loop, loss functions, optimizers | ⭐⭐ |
+| 4 | `steps/step4_evaluate_and_predict.py` | Evaluation, predictions, confusion matrix | ⭐⭐ |
+| 5 | `steps/step5_data_augmentation.py` | Image augmentation techniques | ⭐⭐ |
+| 6 | `steps/step6_transfer_learning.py` | Pre-trained models, fine-tuning | ⭐⭐⭐ |
+| 7 | `steps/step7_learning_rate_scheduler.py` | Learning rate scheduling strategies | ⭐⭐⭐ |
+| 8 | `steps/step8_your_own_images.py` | Classify your own images! | ⭐ |
 
 ---
 
@@ -54,6 +54,8 @@ pip install -r requirements.txt
 ### 3. Run the Steps
 
 ```bash
+cd steps
+
 # Learn the fundamentals
 python step1_data_loading.py      # Understand data loading
 python step2_build_model.py       # Explore CNN architecture
@@ -121,22 +123,24 @@ FC2 (10) → Output (class scores)
 
 ## 💾 Trained Models
 
-Pre-trained model weights are included:
+Pre-trained model weights are included in the `models/` folder:
 
 | File | Description | How to Use |
 |------|-------------|------------|
-| `best_model.pth` | Custom CNN trained on CIFAR-10 | Load with `step2_build_model.ImageClassifier` |
-| `feature_extractor_best.pth` | ResNet18 transfer learning | Load with `torchvision.models.resnet18` |
+| `models/best_model.pth` | Custom CNN trained on CIFAR-10 | Load with `step2_build_model.ImageClassifier` |
+| `models/feature_extractor_best.pth` | ResNet18 transfer learning | Load with `torchvision.models.resnet18` |
 
 ### Loading a Trained Model
 
 ```python
 import torch
+import sys
+sys.path.append('steps')
 from step2_build_model import ImageClassifier
 
 # Load custom CNN
 model = ImageClassifier(num_classes=10)
-checkpoint = torch.load('best_model.pth')
+checkpoint = torch.load('models/best_model.pth')
 model.load_state_dict(checkpoint['model_state_dict'])
 model.eval()
 
@@ -148,16 +152,19 @@ print(f"Best accuracy: {checkpoint['best_acc']:.2f}%")
 
 ## 🖼️ Classify Your Own Images
 
-```python
+```bash
+cd steps
 python step8_your_own_images.py --image path/to/your/image.jpg
 ```
 
-Or use in code:
+Or use in code (from project root):
 
 ```python
 from PIL import Image
 import torch
 import torchvision.transforms as transforms
+import sys
+sys.path.append('steps')
 from step2_build_model import ImageClassifier
 
 # Classes
@@ -166,7 +173,7 @@ classes = ('airplane', 'automobile', 'bird', 'cat', 'deer',
 
 # Load model
 model = ImageClassifier(num_classes=10)
-checkpoint = torch.load('best_model.pth')
+checkpoint = torch.load('models/best_model.pth')
 model.load_state_dict(checkpoint['model_state_dict'])
 model.eval()
 
@@ -194,19 +201,24 @@ print(f"Prediction: {classes[predicted.item()]}")
 
 ```
 Imageclassifier/
-├── 📂 data/                    # CIFAR-10 dataset (auto-downloaded)
-├── 📄 step1_data_loading.py    # Data loading tutorial
-├── 📄 step2_build_model.py     # CNN architecture
-├── 📄 step3_train_model.py     # Training loop
-├── 📄 step4_evaluate_and_predict.py  # Evaluation
-├── 📄 step5_data_augmentation.py     # Augmentation
-├── 📄 step6_transfer_learning.py     # Transfer learning
-├── 📄 step7_learning_rate_scheduler.py  # LR scheduling
-├── 📄 step8_your_own_images.py       # Use your own images
-├── 🔧 best_model.pth           # Trained CNN weights
-├── 🔧 feature_extractor_best.pth  # Transfer learning weights
-├── 📄 requirements.txt         # Dependencies
-└── 📄 README.md               # This file
+├── 📂 steps/                         # All learning step files
+│   ├── step1_data_loading.py         # Data loading tutorial
+│   ├── step2_build_model.py          # CNN architecture
+│   ├── step3_train_model.py          # Training loop
+│   ├── step4_evaluate_and_predict.py # Evaluation
+│   ├── step5_data_augmentation.py    # Augmentation
+│   ├── step6_transfer_learning.py    # Transfer learning
+│   ├── step7_learning_rate_scheduler.py  # LR scheduling
+│   └── step8_your_own_images.py      # Use your own images
+├── 📂 models/                        # Trained model weights
+│   ├── best_model.pth                # Custom CNN weights
+│   └── feature_extractor_best.pth    # Transfer learning weights
+├── 📂 outputs/                       # Generated images & plots
+│   └── (training curves, predictions, etc.)
+├── 📂 data/                          # CIFAR-10 dataset (auto-downloaded)
+├── 📄 requirements.txt               # Dependencies
+├── 📄 LICENSE                        # MIT License
+└── 📄 README.md                      # This file
 ```
 
 ---

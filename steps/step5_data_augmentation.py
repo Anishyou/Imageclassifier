@@ -146,13 +146,13 @@ def show_augmentations(image, transform, num_augmentations=8):
         ax.axis('off')
     
     plt.tight_layout()
-    plt.savefig('augmentation_demo.png', dpi=150)
+    plt.savefig('../outputs/augmentation_demo.png', dpi=150)
     plt.show()
-    print("\n✓ Augmentation demo saved to 'augmentation_demo.png'")
+    print("\n✓ Augmentation demo saved to 'outputs/augmentation_demo.png'")
 
 # Load one image from CIFAR-10 (as PIL Image, without transforms)
 raw_dataset = torchvision.datasets.CIFAR10(
-    root='./data', train=True, download=True, transform=None
+    root='../data', train=True, download=True, transform=None
 )
 
 image, label = raw_dataset[0]
@@ -183,7 +183,7 @@ print("""
 ```python
 # Training dataset - WITH augmentation
 train_dataset = torchvision.datasets.CIFAR10(
-    root='./data',
+    root='../data',  # Data folder is in parent directory
     train=True,
     download=True,
     transform=augmented_transform  # 👈 Use augmented transform!
@@ -191,7 +191,7 @@ train_dataset = torchvision.datasets.CIFAR10(
 
 # Test dataset - WITHOUT augmentation
 test_dataset = torchvision.datasets.CIFAR10(
-    root='./data',
+    root='../data',
     train=False,
     download=True,
     transform=test_transform  # 👈 Use basic transform!

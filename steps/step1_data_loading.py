@@ -46,7 +46,7 @@ print("Downloading CIFAR-10 dataset (this may take a moment)...")
 
 # Training dataset
 train_dataset = torchvision.datasets.CIFAR10(
-    root='./data',           # Where to store the data
+    root='../data',          # Where to store the data (parent folder)
     train=True,              # Get the training set
     download=True,           # Download if not already present
     transform=transform      # Apply our transforms
@@ -54,7 +54,7 @@ train_dataset = torchvision.datasets.CIFAR10(
 
 # Test dataset
 test_dataset = torchvision.datasets.CIFAR10(
-    root='./data',
+    root='../data',
     train=False,             # Get the test set
     download=True,
     transform=transform
@@ -118,9 +118,9 @@ def show_images(images, labels):
             ax.axis('off')
     
     plt.tight_layout()
-    plt.savefig('sample_images.png', dpi=150)
+    plt.savefig('../outputs/sample_images.png', dpi=150)
     plt.show()
-    print("\n✓ Sample images saved to 'sample_images.png'")
+    print("\n✓ Sample images saved to 'outputs/sample_images.png'")
 
 # Get one batch of training images
 images, labels = next(iter(train_loader))

@@ -269,8 +269,8 @@ Example usage:
 # Define your classes
 class_names = ['cat', 'dog', 'bird']
 
-# Load your trained model
-model = load_trained_model('my_model.pth', num_classes=3)
+# Load your trained model (models are in ../models/ folder)
+model = load_trained_model('../models/my_model.pth', num_classes=3)
 
 # Predict on any image!
 predicted, confidence, probs = predict_image(
