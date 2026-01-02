@@ -279,8 +279,7 @@ def train_with_scheduler(model, train_loader, test_loader,
         optimizer,
         mode='max',        # We want to maximize accuracy
         factor=0.5,        # Reduce LR by half
-        patience=2,        # Wait 2 epochs before reducing
-        verbose=True       # Print when LR changes
+        patience=2         # Wait 2 epochs before reducing
     )
     
     # Early stopping
